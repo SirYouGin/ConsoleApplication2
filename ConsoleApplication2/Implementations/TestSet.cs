@@ -83,7 +83,7 @@ namespace ConsoleApplication2.Implementations
             defaultApplication = addDefaultApplication();
             foreach (XmlNode child in node.ChildNodes)
             {
-                ITest t = new Test(child);
+                Test t = new Test(child);
                 t.activeApplication = defaultApplication;
                 t.Initialize(this);
                 testList.Add(t);

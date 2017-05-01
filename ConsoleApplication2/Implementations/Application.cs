@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
+using System.Xml;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,7 +12,13 @@ namespace ConsoleApplication2.Implementations
 {
     class Application : BaseNode, IApplication
     {
+        private XmlNode node;
         private readonly HashSet<IBlock> blockList = new HashSet<IBlock>();
+
+        public Application(XmlNode parent)
+        {
+            node = parent;
+        }
         public int Count
         {
             get
@@ -54,6 +60,11 @@ namespace ConsoleApplication2.Implementations
         IEnumerator IEnumerable.GetEnumerator()
         {
             throw new NotImplementedException();
+        }
+
+        public override void Initialize(IElement _parent, IDictionary<string, string> _params)
+        {
+            base.Initialize(_parent, _params);
         }
     }
 }

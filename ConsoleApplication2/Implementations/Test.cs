@@ -69,5 +69,10 @@ namespace ConsoleApplication2.Implementations
         {
             throw new NotImplementedException();
         }
+
+        public override void Initialize(IElement _parent, IDictionary<string, string> _params)
+        {
+            base.Initialize(_parent, _params);
+        }
     }
 }
