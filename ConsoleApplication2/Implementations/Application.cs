@@ -10,9 +10,9 @@ using ConsoleApplication2.Interfaces;
 
 namespace ConsoleApplication2.Implementations
 {
-    class Application : BaseNode, IApplication
+    class Application : Element, IApplication
     {
-        private XmlNode node;
+        private XmlNode node;        
         private readonly HashSet<IBlock> blockList = new HashSet<IBlock>();
 
         public Application(XmlNode parent)
@@ -65,6 +65,17 @@ namespace ConsoleApplication2.Implementations
         public override void Initialize(IElement _parent, IDictionary<string, string> _params)
         {
             base.Initialize(_parent, _params);
+        }
+
+        public void Activate()
+        {            
+            (Owner as ITest).activeApplication = this;
+
+        }
+
+        public void Deactivate()
+        {
+            (Owner as ITest).activeApplication = null;
         }
     }
 }

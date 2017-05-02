@@ -10,7 +10,7 @@ using ConsoleApplication2.Interfaces;
 
 namespace ConsoleApplication2.Implementations
 {
-    class Block : BaseNode, IBlock
+    class Block : Element, IBlock
     {
         private XmlNode node;
         private readonly HashSet<IElement> elementList = new HashSet<IElement>();
@@ -62,18 +62,18 @@ namespace ConsoleApplication2.Implementations
             base.Initialize(_parent, _params);
             foreach (XmlNode child in node.ChildNodes)
             {   
-                /*
-                IElement elem = ElementFactory.creteElement(this, _params);
+                
+                IElement elem = ElementFactory.makeElement(this, child);
                 if (elem is IApplication) 
                 { 
-                    (_parent as IApplication).Deactivate;
-                    (elem as IApplication).Activate;
+                    (_parent as IApplication).Deactivate();
+                    (elem as IApplication).Activate();
                 }
                 else
-                {
-                elementList.Add(elem);
+                {                    
+                    elementList.Add(elem);
                 }
-                */
+                
             }
         }
     }

@@ -8,15 +8,15 @@ using ConsoleApplication2.Interfaces;
 
 namespace ConsoleApplication2.Implementations
 {
-    public class TestSet : BaseNode, ITestSet
+    public class TestSet : Element, ITestSet
     {
         private XmlNode node;
         private readonly HashSet<ITest> testList = new HashSet<ITest>();
 
         public IApplication defaultApplication;
-        public TestSet(XmlNode parent)
+        public TestSet(XmlNode root)
         {
-            node = parent;
+            node = root;
         }        
 
         public int Count
@@ -64,14 +64,7 @@ namespace ConsoleApplication2.Implementations
                 }
             }            
         }
-
-        private IApplication addDefaultApplication()
-        {
-            IApplication app = new IbsoApplication();
-            app.Initialize(this, GlobalConfig.getConfig());
-            return app;
-        }
-
+        
         IEnumerator IEnumerable.GetEnumerator()
         {
             throw new NotImplementedException();
@@ -79,13 +72,11 @@ namespace ConsoleApplication2.Implementations
 
         public override void Initialize(IElement _parent, IDictionary<string, string> _params)
         {
-            base.Initialize(_parent, _params);
-            defaultApplication = addDefaultApplication();
+            base.Initialize(_parent, _params);            
             foreach (XmlNode child in node.ChildNodes)
             {
-                Test t = new Test(child);
-                t.activeApplication = defaultApplication;
-                t.Initialize(this);
+                Test t = new Test(child);                
+                t.Initialize(this, null);
                 testList.Add(t);
             }
         }

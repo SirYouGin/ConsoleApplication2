@@ -8,5 +8,7 @@ namespace ConsoleApplication2.Interfaces
 {
     public interface IApplication : IElement, IReadOnlyCollection<IBlock>
     {
+        void Activate();
+        void Deactivate();
     }
 }

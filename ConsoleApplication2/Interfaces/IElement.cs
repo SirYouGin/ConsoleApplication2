@@ -8,8 +8,9 @@ namespace ConsoleApplication2.Interfaces
 {
     public interface IElement
     {
-        string Name { get; }
+        string Name { get; set; }
         void Initialize(IElement _parent, IDictionary<string, string> _params);
         void Execute();
+        IElement Owner { get; set; }
     }
 }

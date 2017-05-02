@@ -9,11 +9,11 @@ using ConsoleApplication2.Interfaces;
 
 namespace ConsoleApplication2.Implementations
 {
-    public class Test : BaseNode, ITest
+    public class Test : Element, ITest
     {
         private XmlNode node;
         private readonly HashSet<IApplication> appList = new HashSet<IApplication>();
-        public IApplication activeApplication;
+        private IApplication m_activeApplication;
         public Test(XmlNode parent)
         {
             node = parent;
@@ -28,6 +28,29 @@ namespace ConsoleApplication2.Implementations
             get
             {
                 return appList.Count;
+            }
+        }
+
+        IApplication ITest.activeApplication
+        {
+            get
+            {
+                return m_activeApplication;
+            }
+
+            set
+            {                
+                if (m_activeApplication != value)
+                {
+                    if (m_activeApplication != null) OnElementFinish(m_activeApplication);
+                }
+                m_activeApplication = value;
+                m_activeApplication.Owner = this;
+
+                if (m_activeApplication != null)
+                {
+                    OnElementStart(m_activeApplication);
+                }
             }
         }
 

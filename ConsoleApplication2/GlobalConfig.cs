@@ -117,7 +117,7 @@ namespace ConsoleApplication2
             try
             {
                 Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-                _currentConfig.UpdateFrom(config.AppSettings.Settings.ToDictionary());
+                _currentConfig.updateFrom(config.AppSettings.Settings.ToDictionary());
                 activeProfile = getProperty("ActiveProfile");
                 if (String.IsNullOrWhiteSpace(activeProfile)) throw new ArgumentNullException("Не задан активный профиль настроек");
             }
@@ -128,7 +128,7 @@ namespace ConsoleApplication2
             if (!String.IsNullOrEmpty(activeProfile))
             {
                 NameValueCollection nvc = ConfigurationManager.GetSection(activeProfile) as NameValueCollection;
-                _currentConfig.UpdateFrom(nvc.ToDictionary());
+                _currentConfig.updateFrom(nvc.ToDictionary());
             }
         }
         /// <summary>
@@ -139,7 +139,7 @@ namespace ConsoleApplication2
         public static void Init(string[] config)
         {            
             Dictionary<string, string> _args = parseArgs(config);
-            _currentConfig.UpdateFrom(_args);            
+            _currentConfig.updateFrom(_args);            
         }
         
         public static string getProperty(string name, string def_value = null)

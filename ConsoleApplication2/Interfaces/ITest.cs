@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace ConsoleApplication2.Interfaces
 {
     public interface ITest : IElement, IReadOnlyCollection<IApplication>
-    {       
+    {
+        IApplication activeApplication {get;set;}       
     }
 }

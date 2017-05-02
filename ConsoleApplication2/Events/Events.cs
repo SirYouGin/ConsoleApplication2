@@ -21,4 +21,14 @@ namespace ConsoleApplication2.Events
     public delegate void ElementFinishEvent(IElement sender);
     public delegate void ElementErrorEvent(IElement sender, Exception e);
 
+    public delegate void LogEvent(object sender, LogEventArgs args);
+
+
+    public class LogEventArgs : EventArgs
+    {
+        public Exception e;
+        public string message;
+        public string category;
+        public LogEventArgs(string Category, string m, Exception ex = null) { e = ex; category = Category; message = m; }
+    }
 }

@@ -37,7 +37,7 @@ namespace ConsoleApplication2
             System.Diagnostics.Process.Start(name);
         }
 
-        public static Dictionary<string, string> ToDictionary(this NameValueCollection nvc, Dictionary<string, string> copyFrom = null)
+        public static IDictionary<string, string> ToDictionary(this NameValueCollection nvc, IDictionary<string, string> copyFrom = null)
         {
             var dict = nvc.AllKeys.ToDictionary(k => k, k => nvc[k]);
             if (copyFrom != null)
@@ -45,12 +45,12 @@ namespace ConsoleApplication2
             return dict;
         }
 
-        public static Dictionary<string, string> ToDictionary(this KeyValueConfigurationCollection kvc)
+        public static IDictionary<string, string> ToDictionary(this KeyValueConfigurationCollection kvc)
         {
             return kvc.AllKeys.ToDictionary(k => k.ToLower(), k => kvc[k].Value);
         }
 
-        public static Dictionary<string, string> UpdateFrom(this Dictionary<string, string> dict, Dictionary<string, string> copyFrom = null)
+        public static IDictionary<string, string> updateFrom(this IDictionary<string, string> dict, IDictionary<string, string> copyFrom = null)
         {
             if (copyFrom != null)
                 foreach (var elem in copyFrom)

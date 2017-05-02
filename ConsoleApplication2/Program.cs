@@ -20,7 +20,7 @@ namespace ConsoleApplication2
             XmlDocument doc = new XmlDocument();
             doc.Load("tests.xml");
 
-            ITestSet testSet = new TestSet();
+            ITestSet testSet = new TestSet(doc.FirstChild.FirstChild);
 
             testSet.Initialize(null, null);
 

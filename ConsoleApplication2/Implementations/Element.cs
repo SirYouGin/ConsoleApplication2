@@ -1,25 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Xml;
 using System.Text;
 using System.Threading.Tasks;
 
 using ConsoleApplication2.Events;
 using ConsoleApplication2.Interfaces;
 
-namespace ConsoleApplication2.Implementations
+namespace ConsoleApplication2
 {
-    public abstract class BaseNode : IElement
+    public abstract class Element : IElement
     {
-        public string Name
-        {
-            get
-            {
-                return GetType().Name;
-            }
-        }
-
-        IElement parent;
+        protected Dictionary<string, string> prop = new Dictionary<string, string>();
+        public string Name {get;set;}
+        public string Id {get;set;}
+        public IElement Owner { get; set; }
+        public abstract void Execute();
+        public virtual void Initialize(IElement _parent,IDictionary<string, string> dict) { prop.updateFrom(dict); }
 
         public event ElementStartEvent elemStart;
 
@@ -51,9 +48,5 @@ namespace ConsoleApplication2.Implementations
                 evnt(elem, e);
             }
         }
-
-        public virtual void Initialize(IElement _parent, IDictionary<string, string> _params) { parent = _parent; }       
-
-        public abstract void Execute();
     }
 }
