@@ -63,8 +63,16 @@ namespace ConsoleApplication2.Implementations
             foreach (XmlNode child in node.ChildNodes)
             {   
                 /*
-                IElement elem = ElementFactory.creteElement(_parent, _params);             
+                IElement elem = ElementFactory.creteElement(this, _params);
+                if (elem is IApplication) 
+                { 
+                    (_parent as IApplication).Deactivate;
+                    (elem as IApplication).Activate;
+                }
+                else
+                {
                 elementList.Add(elem);
+                }
                 */
             }
         }
