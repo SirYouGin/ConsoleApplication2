@@ -75,7 +75,7 @@ namespace ConsoleApplication2.Implementations
             base.Initialize(_parent, _params);            
             foreach (XmlNode child in node.ChildNodes)
             {
-                Test t = new Test(child);                
+                Test t = new Test(child.FirstChild);                
                 t.Initialize(this, null);
                 testList.Add(t);
             }

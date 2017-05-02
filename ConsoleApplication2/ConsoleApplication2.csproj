@@ -53,7 +53,10 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Oracle.DataAccess, Version=2.112.3.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86" />
+    <Reference Include="Oracle.DataAccess, Version=2.112.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\app\Developer\product\11.2.0\client_2\ODP.NET\bin\2.x\Oracle.DataAccess.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -72,6 +75,7 @@
     <Compile Include="Events\Events.cs" />
     <Compile Include="GlobalConfig.cs" />
     <Compile Include="Implementations\Application.cs" />
+    <Compile Include="Implementations\ApplicationFactory.cs" />
     <Compile Include="Implementations\Block.cs" />
     <Compile Include="Implementations\ConnectionFactory.cs" />
     <Compile Include="Implementations\Element.cs" />

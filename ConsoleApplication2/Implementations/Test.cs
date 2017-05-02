@@ -17,11 +17,7 @@ namespace ConsoleApplication2.Implementations
         public Test(XmlNode parent)
         {
             node = parent;
-        }
-
-        protected Test()
-        {
-        }
+        }        
 
         public int Count
         {
@@ -96,6 +92,11 @@ namespace ConsoleApplication2.Implementations
         public override void Initialize(IElement _parent, IDictionary<string, string> _params)
         {
             base.Initialize(_parent, _params);
+            foreach (XmlNode child in node.ChildNodes)
+            {
+                Block b = new Block(child.FirstChild);
+                b.Initialize(this, null);                
+            }
         }
     }
 }

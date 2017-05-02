@@ -12,12 +12,11 @@ namespace ConsoleApplication2.Implementations
 {
     class Application : Element, IApplication
     {
-        private XmlNode node;        
         private readonly HashSet<IBlock> blockList = new HashSet<IBlock>();
 
-        public Application(XmlNode parent)
+        public Application()
         {
-            node = parent;
+           
         }
         public int Count
         {
@@ -65,6 +64,10 @@ namespace ConsoleApplication2.Implementations
         public override void Initialize(IElement _parent, IDictionary<string, string> _params)
         {
             base.Initialize(_parent, _params);
+            IApplication app = (_parent as ITest).activeApplication;
+            if (app != null)
+                app.Deactivate();
+            Activate();
         }
 
         public void Activate()
